@@ -2,53 +2,131 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Chúc mừng 8/3</title>
+<title>Chúc mừng 8/3 ❤️</title>
 
 <style>
+
 body{
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:sans-serif;
-    text-align:center;
-    color:white;
+margin:0;
+height:100vh;
+background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+overflow:hidden;
+font-family: 'Segoe UI', sans-serif;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
 }
 
-.box{
-    background: rgba(255,255,255,0.2);
-    padding:40px;
-    border-radius:20px;
-    backdrop-filter: blur(10px);
+.container{
+background: rgba(255,255,255,0.2);
+padding:40px;
+border-radius:20px;
+backdrop-filter: blur(10px);
 }
 
 h1{
-    font-size:40px;
+font-size:40px;
 }
 
-p{
-    font-size:20px;
+#message{
+font-size:22px;
+margin-top:20px;
+min-height:50px;
 }
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+font-size:18px;
+background:white;
+color:#ff4d6d;
+cursor:pointer;
+}
+
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
-<h1>🌸 Chúc mừng ngày 8/3 🌸</h1>
+<div class="container">
 
-<p>
-Chúc em luôn xinh đẹp, vui vẻ và hạnh phúc.  
-Cảm ơn em đã xuất hiện trong cuộc đời anh ❤️
-</p>
+<h1>🌸 Happy Women's Day 🌸</h1>
 
-<p>
-— From: Người yêu của em —
-</p>
+<div id="message"></div>
+
+<button onclick="showLove()">Mở quà bất ngờ 🎁</button>
 
 </div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6e6c4c6d4e.mp3">
+</audio>
+
+<script>
+
+let text="Chúc em ngày 8/3 thật vui vẻ, luôn xinh đẹp và hạnh phúc. Cảm ơn em đã đến bên anh ❤️";
+
+let i=0;
+
+function typeEffect(){
+if(i<text.length){
+document.getElementById("message").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeEffect,50);
+}
+}
+
+typeEffect();
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=Math.random()*30+20+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+}
+
+setInterval(createHeart,300);
+
+function showLove(){
+alert("Anh yêu em rất nhiều ❤️");
+}
+
+</script>
 
 </body>
 </html>
