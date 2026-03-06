@@ -2,50 +2,72 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Chúc mừng 8/3 ❤️</title>
+<title>Chúc em 8/3 ❤️</title>
 
 <style>
 
 body{
 margin:0;
 height:100vh;
-background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-overflow:hidden;
-font-family: 'Segoe UI', sans-serif;
+background:linear-gradient(135deg,#ff9a9e,#ffc3a0);
+font-family:sans-serif;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 color:white;
+overflow:hidden;
 }
 
 .container{
-background: rgba(255,255,255,0.2);
+background:rgba(255,255,255,0.2);
 padding:40px;
 border-radius:20px;
 backdrop-filter: blur(10px);
 }
 
 h1{
-font-size:40px;
+font-size:38px;
 }
 
-#message{
-font-size:22px;
-margin-top:20px;
-min-height:50px;
+p{
+font-size:20px;
 }
 
 button{
 margin-top:20px;
-padding:12px 25px;
+padding:12px 30px;
+font-size:20px;
 border:none;
 border-radius:30px;
-font-size:18px;
 background:white;
 color:#ff4d6d;
 cursor:pointer;
+transition:0.3s;
 }
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* ảnh rơi */
+
+.love-img{
+position:absolute;
+top:-300px;
+left:50%;
+transform:translateX(-50%);
+width:220px;
+border-radius:20px;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+transition:2s;
+}
+
+.show{
+top:120px;
+}
+
+/* trái tim */
 
 .heart{
 position:absolute;
@@ -55,75 +77,81 @@ animation:float 5s linear infinite;
 }
 
 @keyframes float{
-0%{
-transform:translateY(100vh);
-opacity:1;
-}
-100%{
-transform:translateY(-10vh);
-opacity:0;
-}
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🌸 Happy Women's Day 🌸</h1>
+<h1>🌸 Chúc mừng 8/3 🌸</h1>
 
-<div id="message"></div>
+<p>
+Chúc em luôn xinh đẹp, vui vẻ và hạnh phúc.  
+Cảm ơn em đã đến bên anh ❤️
+</p>
 
-<button onclick="showLove()">Mở quà bất ngờ 🎁</button>
+<button onclick="showLove()">Yêu bé 💖</button>
 
 </div>
+
+<img src="ANH_NGUOI_YEU.jpg" class="love-img" id="loveImg">
 
 <audio autoplay loop>
 <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6e6c4c6d4e.mp3">
 </audio>
 
 <script>
+    let images=[
+"/Bé iu/1.jpg",
+"/Bé iu/2.jpg",
+"/Bé iu/3.jpg",
+"/Bé iu/4.jpg",
+"/Bé iu/5.jpg",
+"/Bé iu/6.jpg",
+"/Bé iu/7.jpg",
+"/Bé iu/8.jpg",
+"/Bé iu/9.jpg",
+"/Bé iu/10.jpg"
+];
 
-let text="Chúc em ngày 8/3 thật vui vẻ, luôn xinh đẹp và hạnh phúc. Cảm ơn em đã đến bên anh ❤️";
-
-let i=0;
-
-function typeEffect(){
-if(i<text.length){
-document.getElementById("message").innerHTML+=text.charAt(i);
-i++;
-setTimeout(typeEffect,50);
-}
-}
-
-typeEffect();
-
-function createHeart(){
-
-let heart=document.createElement("div");
-
-heart.className="heart";
-
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.fontSize=Math.random()*30+20+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},5000);
-
-}
-
-setInterval(createHeart,300);
+img.src=images[Math.floor(Math.random()*images.length)];
 
 function showLove(){
-alert("Anh yêu em rất nhiều ❤️");
+
+for(let i=0;i<20;i++){
+
+let img=document.createElement("img");
+
+img.src="ANH_NGUOI_YEU.jpg";
+
+img.style.position="absolute";
+
+img.style.width=(80+Math.random()*100)+"px";
+
+img.style.left=Math.random()*100+"vw";
+
+img.style.top="-200px";
+
+img.style.borderRadius="15px";
+
+img.style.transition="3s linear";
+
+img.style.transform="rotate("+(Math.random()*360)+"deg)";
+
+document.body.appendChild(img);
+
+setTimeout(()=>{
+img.style.top="110vh";
+},50);
+
+}
+
 }
 
 </script>
