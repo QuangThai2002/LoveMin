@@ -184,11 +184,12 @@ let y=13*Math.cos(angle)
 -2*Math.cos(3*angle)
 -Math.cos(4*angle);
 
-return{
-x:x*16,
-y:-y*16
-};
+let scale = window.innerWidth / 500;
 
+return{
+x:x*12*scale,
+y:-y*12*scale
+};
 }
 
 
