@@ -185,8 +185,8 @@ let y=13*Math.cos(angle)
 -Math.cos(4*angle);
 
 return{
-x:x*18,
-y:-y*18
+x:x*16,
+y:-y*16
 };
 
 }
@@ -232,8 +232,8 @@ setTimeout(()=>{
 
 let pos=heartPos(i,total);
 
-img.style.left="calc(50vw + "+pos.x+"px)";
-img.style.top="calc(50vh + "+pos.y+"px)";
+img.style.left="calc(50vw + "+pos.x+"px - 35px)";
+img.style.top="calc(50vh + "+pos.y+"px - 35px)";
 
 },3000);
 
@@ -260,23 +260,6 @@ setTimeout(()=>heart.remove(),7000);
 }
 /* chữ anh yêu em */
 
-let love="Yêu Min ❤️";
-
-let i=0;
-
-function typing(){
-
-if(i<love.length){
-
-document.getElementById("loveText").innerHTML+=love.charAt(i);
-
-i++;
-
-setTimeout(typing,120);
-
-}
-
-}
 
 setTimeout(typing,5000);
 
