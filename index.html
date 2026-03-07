@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chúc em 8/3 ❤️</title>
 
 <style>
@@ -20,34 +21,45 @@ overflow:hidden;
 }
 
 .container{
-background:rgba(255,255,255,0.2);
-padding:40px;
+background:rgba(255,255,255,0.25);
+padding:30px;
 border-radius:20px;
+width:80%;
+max-width:350px;
 backdrop-filter: blur(10px);
+z-index:2;
 }
 
 h1{
-font-size:38px;
+font-size:28px;
 }
 
 p{
-font-size:20px;
+font-size:16px;
 }
 
 button{
 margin-top:20px;
-padding:12px 30px;
-font-size:20px;
+padding:12px 25px;
+font-size:18px;
 border:none;
 border-radius:30px;
 background:white;
 color:#ff4d6d;
 cursor:pointer;
-transition:0.3s;
 }
 
-button:hover{
-transform:scale(1.1);
+/* hoa anh đào */
+
+.flower{
+position:absolute;
+font-size:20px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh)}
+100%{transform:translateY(110vh)}
 }
 
 /* trái tim */
@@ -55,13 +67,25 @@ transform:scale(1.1);
 .heart{
 position:absolute;
 color:#ff4d6d;
-font-size:20px;
-animation:float 5s linear infinite;
+animation:heartFloat linear forwards;
 }
 
-@keyframes float{
+@keyframes heartFloat{
 0%{transform:translateY(100vh)}
 100%{transform:translateY(-10vh)}
+}
+
+/* chữ cuối */
+
+.loveText{
+position:absolute;
+font-size:40px;
+font-weight:bold;
+top:45%;
+left:50%;
+transform:translate(-50%,-50%);
+opacity:0;
+transition:2s;
 }
 
 </style>
@@ -73,82 +97,121 @@ animation:float 5s linear infinite;
 
 <h1>🌸 Chúc mừng 8/3 🌸</h1>
 
-<p>
-Chúc em luôn xinh đẹp, vui vẻ và hạnh phúc.  
-Cảm ơn em đã đến bên anh ❤️
-</p>
+<p>Chúc em luôn xinh đẹp và hạnh phúc ❤️</p>
 
-<button onclick="showLove()">Yêu bé 💖</button>
+<button onclick="startLove()">Yêu bé 💖</button>
 
 </div>
 
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6e6c4c6d4e.mp3">
-</audio>
+<div class="loveText" id="loveText">Anh yêu em ❤️</div>
 
 <script>
 
-/* trái tim bay */
+/* ảnh của bạn */
 
-function createHeart(){
-
-let heart=document.createElement("div");
-
-heart.className="heart";
-
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.fontSize=(20+Math.random()*25)+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),5000);
-
-}
-
-setInterval(createHeart,400);
-
-
-/* ảnh rơi */
-let images = [
+let images=[
 "1.jpg",
 "2.jpg",
 "3.jpg",
 "4.jpg",
 "5.jpg",
-"11.jpg",
 "7.jpg",
-"12.jpg",
 "9.jpg",
-"10.jpg"
+"10.jpg",
+"11.jpg",
+"12.jpg"
 ];
 
+/* hoa anh đào rơi */
 
-function showLove(){
+function createFlower(){
 
-for(let i=0;i<30;i++){
+let flower=document.createElement("div");
+
+flower.className="flower";
+
+flower.innerHTML="🌸";
+
+flower.style.left=Math.random()*100+"vw";
+
+flower.style.fontSize=(15+Math.random()*25)+"px";
+
+flower.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(flower);
+
+setTimeout(()=>flower.remove(),10000);
+
+}
+
+setInterval(createFlower,300);
+
+
+/* tạo hình trái tim */
+
+function heartPosition(i,total){
+
+let angle=(i/total)*Math.PI*2;
+
+let x=16*Math.pow(Math.sin(angle),3);
+
+let y=13*Math.cos(angle)
+-5*Math.cos(2*angle)
+-2*Math.cos(3*angle)
+-Math.cos(4*angle);
+
+return {x:x*15,y:-y*15};
+
+}
+
+
+/* hiệu ứng ảnh */
+
+function startLove(){
+
+let total=40;
+
+for(let i=0;i<total;i++){
 
 let img=document.createElement("img");
 
 img.src=images[Math.floor(Math.random()*images.length)];
 
 img.style.position="absolute";
-img.style.width=(80+Math.random()*120)+"px";
+img.style.width="80px";
+img.style.borderRadius="15px";
+
 img.style.left=Math.random()*100+"vw";
 img.style.top="-200px";
-img.style.borderRadius="15px";
-img.style.transition="3s linear";
+
+img.style.transition="3s";
 
 document.body.appendChild(img);
 
-setTimeout(()=>{
-img.style.top="110vh";
-},50);
+/* rơi xuống */
 
+setTimeout(()=>{
+img.style.top=(40+Math.random()*40)+"vh";
+},100);
+
+/* tụ thành hình trái tim */
+
+setTimeout(()=>{
+
+let pos=heartPosition(i,total);
+
+img.style.left="calc(50vw + "+pos.x+"px)";
+img.style.top="calc(50vh + "+pos.y+"px)";
+
+},3000);
 
 }
+
+setTimeout(()=>{
+
+document.getElementById("loveText").style.opacity=1;
+
+},5000);
 
 }
 
