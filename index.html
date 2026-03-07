@@ -19,7 +19,11 @@ text-align:center;
 color:white;
 overflow:hidden;
 }
-
+body.heart-mode{
+transform:scale(0.7);
+transform-origin:center;
+transition:1s;
+}
 .container{
 background:rgba(255,255,255,0.25);
 padding:30px;
@@ -28,6 +32,9 @@ width:80%;
 max-width:350px;
 backdrop-filter: blur(10px);
 z-index:2;
+width:100vw;
+    height:100vh;
+    overflow:hidden;
 }
 
 h1{
@@ -99,7 +106,7 @@ transition:2s;
 
 <p>Chúc em luôn xinh đẹp và hạnh phúc ❤️</p>
 
-<button onclick="startLove()">Yêu bé 💖</button>
+<button id="loveBtn" onclick="startLove()">Yêu bé 💖</button>
 
 </div>
 
@@ -168,6 +175,8 @@ return {x:x*15,y:-y*15};
 /* hiệu ứng ảnh */
 
 function startLove(){
+
+document.querySelector(".container").classList.add("heart-mode");
 
 let total=40;
 
