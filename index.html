@@ -50,23 +50,6 @@ button:hover{
 transform:scale(1.1);
 }
 
-/* ảnh rơi */
-
-.love-img{
-position:absolute;
-top:-300px;
-left:50%;
-transform:translateX(-50%);
-width:220px;
-border-radius:20px;
-box-shadow:0 10px 20px rgba(0,0,0,0.3);
-transition:2s;
-}
-
-.show{
-top:120px;
-}
-
 /* trái tim */
 
 .heart{
@@ -82,7 +65,6 @@ animation:float 5s linear infinite;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -100,55 +82,71 @@ Cảm ơn em đã đến bên anh ❤️
 
 </div>
 
-<img src="ANH_NGUOI_YEU.jpg" class="love-img" id="loveImg">
-
 <audio autoplay loop>
 <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6e6c4c6d4e.mp3">
 </audio>
 
 <script>
-    let images=[
-"1.jpg",
-"2.jpg",
-"3.jpg",
-"4.jpg",
-"5.jpg",
-"6.jpg",
-"7.jpg",
-"8.jpg",
-"9.jpg",
-"10.jpg"
+
+/* trái tim bay */
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*25)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+
+}
+
+setInterval(createHeart,400);
+
+
+/* ảnh rơi */
+let images = [
+"/Bé iu/1.jpg",
+"/Bé iu/2.jpg",
+"/Bé iu/3.jpg",
+"/Bé iu/4.jpg",
+"/Bé iu/5.jpg",
+"/Bé iu/11.jpg",
+"/Bé iu/7.jpg",
+"/Bé iu/12.jpg",
+"/Bé iu/9.jpg",
+"/Bé iu/10.jpg"
 ];
 
-img.src=images[Math.floor(Math.random()*images.length)];
 
 function showLove(){
 
-for(let i=0;i<20;i++){
+for(let i=0;i<30;i++){
 
 let img=document.createElement("img");
 
-img.src="ANH_NGUOI_YEU.jpg";
+img.src=images[Math.floor(Math.random()*images.length)];
 
 img.style.position="absolute";
-
-img.style.width=(80+Math.random()*100)+"px";
-
+img.style.width=(80+Math.random()*120)+"px";
 img.style.left=Math.random()*100+"vw";
-
 img.style.top="-200px";
-
 img.style.borderRadius="15px";
-
 img.style.transition="3s linear";
-
-img.style.transform="rotate("+(Math.random()*360)+"deg)";
 
 document.body.appendChild(img);
 
 setTimeout(()=>{
 img.style.top="110vh";
 },50);
+
 
 }
 
